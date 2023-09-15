@@ -30,8 +30,8 @@ __plugin_settings__ = {
     "cmd": ["星火AI"],
 }
 
-xinhuo = on_message(priority=100)
-@xinhuo.handle()
+xinghuo = on_message(priority=100)
+@xinghuo.handle()
 async def _(bot: Bot, event: Event):
     if not isinstance(event, MessageEvent):
         return
@@ -49,13 +49,12 @@ async def _(bot: Bot, event: Event):
         return
 
     question = checklen(getText("user", user_input))
-    print("111:" + str(question))
     SparkApi.answer = ""
     SparkApi.main(appid, api_key, api_secret, Spark_url, domain, question)
 
     answer = SparkApi.answer
     question.clear()
-    await xinhuo.finish(answer)
+    await xinghuo.finish(answer)
 
 
 
